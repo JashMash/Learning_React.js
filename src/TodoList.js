@@ -1,33 +1,123 @@
+/*
+Super important:
+
+https://codingbeautydev.com/blog/react-get-input-value-on-change/
+
+*/
 
 import React from "react";
+
+import Form_event_handling from './Form_event_handling.js';
 
 import sign_img from "./imgs/sign-Language-images-basic.jpg"
 import long_exposure_img from "./imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
 
 function TodoList() {
+    const [all_tasks, setTasks] = React.useState([]);
+
+    const onTaskAddedCallBack = (task) => {
+        //Short/Fast way 
+        setTasks([...all_tasks, { "task": task, "done": false }]);
+        // debugger;
+    };
+
+    const changeTaskState = (task_index, state) => {
+        var copy_input_task = all_tasks[task_index].task;
+        var copy_tasks = all_tasks;
+        var index = parseInt(0);
+        all_tasks.forEach(function (curr_task) {
+            if (curr_task.task == copy_input_task) {
+                copy_tasks[index].done = state;
+                return;
+            }
+            index += 1;
+        })
+        setTasks([...copy_tasks]);
+    }
+
+    const toggleTaskCompletion = (event) => {
+        const id_val = event.target.id;
+        var checkbox = document.getElementById(id_val)//document.querySelectorAll("input[type='checkbox']:checked");
+        if (checkbox.length == 0) {
+            return;
+        }
+
+        if (checkbox.checked) {
+            //Task is done       
+            changeTaskState(id_val, true);
+        } else {
+            // Task is undone
+            changeTaskState(id_val, false);
+        }
+
+    };
+
+
+
+
+
+    // Displaying the updated tasks
+    // short way
+    const task_items_displayed = [];
+    // const all_tasks_copy = all_tasks;
+    var index = parseInt(0);
+
+    for (const curr_task of all_tasks) {
+        if (curr_task.done) {
+            // Striking the done task using id 
+            var task_text = <s>{curr_task.task}</s>
+        } else {
+            // Removing Strike through
+            var task_text = curr_task.task;
+        }
+        task_items_displayed.push(
+            <>
+                <input onClick={toggleTaskCompletion} type="checkbox" id={index} ></input>
+                <label id={`${index}_task`}>{task_text}</label>
+                <br></br>
+            </>
+        );
+        index += 1;
+    }
+
+    const done_task_items_displayed = [];
+    for (const curr_task of all_tasks) {
+        if (curr_task.done) {
+            // Striking the done task using id 
+            done_task_items_displayed.push(<li id={`${index}_task`}>{curr_task.task}</li>);
+            index += 1;
+        }
+    }
+
+    console.log(all_tasks);
     return (
         <>
-        <div className="row">
-            <div className="col">
-
             <h2>My Tasks:</h2>
-            <ul>
-                <li>Learn computer vision for hands</li>
-                <li>Learn how map a hand orientation to a word output</li>
-                <li>Understand what data I need to train the model</li>
-                <li>Look into what would be best ML model to train a model</li>
-                <li>Compare different models with tensor flow</li>
-                <li>Look into using modular for the model training</li>
-                <li>When a satisfactory success rate is achieved create a web app for it</li>
-            </ul>
-            </div>
-            <div className="col">
-                <img src={sign_img} alt="Sign Language" width='600px'></img>
-                {/* <img src='../imgs/sign-Language-images-basic.jpg' alt="Sign Language"></img> */}
-                {/* <img src={long_exposure_img} alt="Long Exposure Italy" width='200px'></img> */}
+            <div className="row">
+                <div className="col">
+                    <ul>
+                        {/* Long way */}
+                        {task_items_displayed}
 
+                        {/* Short way  uses map but with me 
+                            using a object I havent gotten into */}
+                        {/* {all_tasks.map((task, index) => <li key={index}>{task}</li>)} */}
+                        {/* {all_tasks.map((curr_task,curr_state, index) => <><input onClick={toggleTaskCompletion} type="checkbox" id ={`${index}_active`} ></input>
+                        <label  id = {`${index}_active_task`}>{curr_task}</label><br></br></>)} */}
+
+                    </ul>
+
+                    <Form_event_handling onTaskAdded={onTaskAddedCallBack} />
+                </div>
+                <div className="col">
+                    <label>Done Tasks:</label>
+                    <ul>
+                        {done_task_items_displayed}
+                        {/* {done_tasks.map((task, index) => <li key={index}>{task}</li>)} */}
+                    </ul>
+
+                </div>
             </div>
-        </div>
         </>
     );
 };
