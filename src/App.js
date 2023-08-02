@@ -10,6 +10,7 @@ import Photography from './Photography.js';
 
 // Using State
 import Counter from './Counter.js';
+import FunFact from './FunFact';
 
 
 function App() {
@@ -21,9 +22,11 @@ function App() {
 
       <body className='App-body'>
         <div className='App-body-content'>
+          <FunFact/>
           <Counter/>
-          <TodoList />
+          <TodoList title="Immidiate"/>
           <br></br>
+          <TodoList title="Long Term"/>
           {/* <Photography /> */}
         </div>
       </body>

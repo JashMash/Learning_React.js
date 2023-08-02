@@ -8,11 +8,12 @@ https://codingbeautydev.com/blog/react-get-input-value-on-change/
 import React from "react";
 
 import Form_event_handling from './Form_event_handling.js';
+import TodoFormErrorH from "./TodoFormErrorH.js";
 
 import sign_img from "./imgs/sign-Language-images-basic.jpg"
 import long_exposure_img from "./imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
 
-function TodoList() {
+function TodoList({title}) {
     const [all_tasks, setTasks] = React.useState([]);
 
     const onTaskAddedCallBack = (task) => {
@@ -92,28 +93,21 @@ function TodoList() {
     console.log(all_tasks);
     return (
         <>
-            <h2>My Tasks:</h2>
+            <h2>{title} Task List:</h2>
             <div className="row">
                 <div className="col">
                     <ul>
                         {/* Long way */}
                         {task_items_displayed}
-
-                        {/* Short way  uses map but with me 
-                            using a object I havent gotten into */}
-                        {/* {all_tasks.map((task, index) => <li key={index}>{task}</li>)} */}
-                        {/* {all_tasks.map((curr_task,curr_state, index) => <><input onClick={toggleTaskCompletion} type="checkbox" id ={`${index}_active`} ></input>
-                        <label  id = {`${index}_active_task`}>{curr_task}</label><br></br></>)} */}
-
                     </ul>
 
                     <Form_event_handling onTaskAdded={onTaskAddedCallBack} />
+                    
                 </div>
                 <div className="col">
                     <label>Done Tasks:</label>
                     <ul>
                         {done_task_items_displayed}
-                        {/* {done_tasks.map((task, index) => <li key={index}>{task}</li>)} */}
                     </ul>
 
                 </div>
