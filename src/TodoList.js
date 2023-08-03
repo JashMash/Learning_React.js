@@ -29,7 +29,7 @@ function TodoList({title}) {
         all_tasks.forEach(function (curr_task) {
             if (curr_task.task == copy_input_task) {
                 copy_tasks[index].done = state;
-                return;
+                // return;
             }
             index += 1;
         })

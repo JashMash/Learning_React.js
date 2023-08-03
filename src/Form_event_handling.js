@@ -16,7 +16,7 @@ function Form_event_handling({ onTaskAdded }) {
         const imported_tasks = json_tasks.tasks;
 
         // Getting a random number
-        const index = (Math.random()*imported_tasks.length).toFixed(0);
+        const index = (Math.random()*(imported_tasks.length-1)).toFixed(0);
 
         const random_task = imported_tasks[index];
 
@@ -77,6 +77,7 @@ function Form_event_handling({ onTaskAdded }) {
                 <input type="text" name="task_inp" />
                 <strong>
                     <input type="submit" value="Submit" />
+                    <button type="button" onClick={handleAddTask}>Generate Random Task</button>
                 </strong>
                 {/* <TodoFormErrorH/> */}
                 <ul>
