@@ -10,8 +10,8 @@ import React from "react";
 import Form_event_handling from './Form_event_handling.js';
 import TodoFormErrorH from "./TodoFormErrorH.js";
 
-import sign_img from "./imgs/sign-Language-images-basic.jpg"
-import long_exposure_img from "./imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
+import sign_img from "./assests/imgs/sign-Language-images-basic.jpg"
+import long_exposure_img from "./assests/imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
 
 function TodoList({title}) {
     const [all_tasks, setTasks] = React.useState([]);

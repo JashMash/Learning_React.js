@@ -1,6 +1,6 @@
 import React from "react";
 
-import long_exposure_img from "./imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
+import long_exposure_img from "./assests/imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
 
 function Photography(){
     return (

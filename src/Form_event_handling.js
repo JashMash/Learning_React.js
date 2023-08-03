@@ -2,7 +2,35 @@ import React from "react"
 
 import TodoFormErrorH from "./TodoFormErrorH.js";
 
+//Importing from json file
+import json_tasks from "./assests/tasks.json"
+
 function Form_event_handling({ onTaskAdded }) {
+
+    
+
+    const handleAddTask=()=>{
+        // Adding Random task from tasks.json
+
+        // Importing from json file
+        const imported_tasks = json_tasks.tasks;
+
+        // Getting a random number
+        const index = (Math.random()*imported_tasks.length).toFixed(0);
+
+        const random_task = imported_tasks[index];
+
+        //Error Handling
+        const error = errorChecker(random_task);
+
+        // debugger;
+        if (!error) {
+            onTaskAdded(random_task);
+        }
+    }
+
+    React.useEffect(handleAddTask, []);
+
 
     const [errors, setErrors] = React.useState([]);
     // I tried to make a another file for the error handling but wasnt sure
