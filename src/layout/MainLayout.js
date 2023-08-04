@@ -1,29 +1,36 @@
 import React, { Children } from "react";
 
+import '../assests/lightApp.css';
+import '../assests/darkApp.css';
 
 import Header from "./Header";
 import Footer from "./Footer";
 
+import { ThemeContext } from "../components/ThemeContext";
+
 const MainLayout = (props) => {
-    const {children} = props;
+    const { children } = props;
+    const { theme } = React.useContext(ThemeContext);
     return (
-        <div className="App">
-            <header className="App-header">
-                <Header className='top_header' id='header' title='this is the header' />
-            </header>
+        <>
+            <div id="App">
+                <header className={theme==='light'? 'light_mode':'dark_mode'} id="App-header">
+                    <Header id='header' />
+                </header>
 
-            <body className='App-body'>
-                <div className='App-body-content'>
-                    {children}
-                </div>
-            </body>
+                <body className={theme==='light'? 'light_mode':'dark_mode'} id='App-body'>
+                    <div className={theme==='light'? 'light_mode':'dark_mode'} id='App-body-content'>
+                        {children}
+                    </div>
+                </body>
 
 
-            <footer className='App-footer'>
-                <Footer />
-            </footer>
+                <footer className={theme==='light'? 'light_mode':'dark_mode'} id='App-footer'>
+                    <Footer />
+                </footer>
 
-        </div>
+            </div>
+        </>
     )
 }
 

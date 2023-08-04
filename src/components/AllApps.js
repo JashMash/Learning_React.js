@@ -1,6 +1,5 @@
 // import logo from './assests/imgs/logo.svg';
 
-import '../assests/App.css';
 
 
 // Within Todolist a Form was added that can be read inside

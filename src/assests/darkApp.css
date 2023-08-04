@@ -1,0 +1,103 @@
+
+
+
+
+
+ #App-header.dark_mode{
+	background-color: #282c34;
+	color: white;
+}
+
+
+
+#App-header.dark_mode .btn{
+	background-color: black;
+	color:  white ;
+	/* align-items: center; */
+} 
+
+#App-header.dark_mode .btn:hover{
+	background-color: rgb(80, 80, 80);
+	color:  white ;
+	/* align-items: center; */
+} 
+
+#App-link.dark_mode {
+	color: #2a3c41;
+}
+
+#App-body.dark_mode {
+	background-color: rgb(54, 67, 78);
+	min-height: 80vh;
+	color: white;
+	/* align-items: center; */
+}
+#App-body-content.dark_mode {
+	padding: 2% 0 0 0;
+	width: 80%;
+	margin: 0 auto;
+}
+
+#App-body-content.dark_mode .card{
+	background-color: lightslategray;
+}
+
+#App-body-content.dark_mode .list-group-item{
+	background-color: rgb(134, 142, 149);
+	border-color: rgb(84, 84, 84);
+}
+
+#App-body-content.dark_mode .btn{
+	color: #282c34;
+	border-color: #282c34;
+	background-color: rgb(139, 139, 139);
+}
+#App-body-content.dark_mode .btn:hover{
+	color: #282c34;
+	border-color: #282c34;
+	background-color: rgb(139, 139, 139);
+}
+
+#App-footer.dark_mode {
+	margin-top: 0;
+
+	background-color: #282c34;
+	min-height: 10vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+/* .dark_mode h1, h2{
+	margin: 0 auto;
+} */
+
+/* .row{
+	display: flex;
+	flex-direction: inline;
+	column-gap: 2%;
+}
+
+.col{
+	vertical-align: middle;
+	/* display: flex; */
+/* }  */
+
+
+
+/* @media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+} */
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */

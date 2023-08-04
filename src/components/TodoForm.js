@@ -1,22 +1,29 @@
 import React from "react"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import TodoFormErrorH from "./TodoFormErrorH.js";
 
 //Importing from json file
 import json_tasks from "../assests/tasks.json"
 
+
+/*
+@@ Apply Bootstrap's "Form" and "InputGroup" components for the form layout.
+Use Bootstrap's "Button" component for the "Add Task" button.
+Implement responsive styling for a user-friendly experience on different devices.
+*/
+
+
 function Form_event_handling({ onTaskAdded }) {
 
-    
-
-    const handleAddTask=()=>{
+    const handleAddTask = () => {
         // Adding Random task from tasks.json
 
         // Importing from json file
         const imported_tasks = json_tasks.tasks;
 
         // Getting a random number
-        const index = (Math.random()*(imported_tasks.length-1)).toFixed(0);
+        const index = (Math.random() * (imported_tasks.length - 1)).toFixed(0);
 
         const random_task = imported_tasks[index];
 
@@ -30,7 +37,6 @@ function Form_event_handling({ onTaskAdded }) {
     }
 
     React.useEffect(handleAddTask, []);
-
 
     const [errors, setErrors] = React.useState([]);
     // I tried to make a another file for the error handling but wasnt sure
@@ -46,7 +52,6 @@ function Form_event_handling({ onTaskAdded }) {
 
         return new_errors.length > 0 ? true : false;
     }
-
 
     const errorsList = errors.map(
         (error, index) => <li key={index}> {error}</li>
@@ -74,17 +79,22 @@ function Form_event_handling({ onTaskAdded }) {
         <>
             <form onSubmit={onSubmit}>
                 <h3>Please enter your task here:</h3>
-                <input type="text" name="task_inp" />
-                <strong>
-                    <input type="submit" value="Submit" />
-                    <button type="button" onClick={handleAddTask}>Generate Random Task</button>
-                </strong>
+                <div className="input-group">
+                    <input className="form-control" type="text" name="task_inp" />
+                    <div className="input-group-append">
+                    <strong >
+                        <input className="btn btn-outline-secondary" type="submit" value="Submit" />
+                        <button className="btn btn-outline-secondary" type="button" onClick={handleAddTask}>Generate Random Task</button>
+                    </strong>
+                    </div>
+                </div>
                 {/* <TodoFormErrorH/> */}
                 <ul>
                     {/* {errorsList} */}
                     {errors.map((error, index) => <li key={index}> {error}</li>)}
                 </ul>
             </form>
+            
         </>
     )
 }

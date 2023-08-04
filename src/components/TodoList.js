@@ -10,10 +10,17 @@ import React from "react";
 import Form_event_handling from '../components/TodoForm.js';
 import TodoFormErrorH from "../components/TodoFormErrorH.js";
 
-import sign_img from "../assests/imgs/sign-Language-images-basic.jpg"
-import long_exposure_img from "../assests/imgs/samuele-errico-piccarini-t4OxCpKie70-unsplash.jpg"
+/*
+- Apply Bootstrap's grid system to structure the layout. @@
+- Use Bootstrap's "Card" component to display the list of tasks.@@
+- Style the task items using Bootstrap classes like "list-group-item." @@
+- Utilize Bootstrap's "Badge" component for displaying task completion status. @@
+- Apply custom CSS styles as needed to enhance the design.
+*/
 
-function TodoList({title}) {
+
+
+function TodoList({ title }) {
     const [all_tasks, setTasks] = React.useState([]);
 
     const onTaskAddedCallBack = (task) => {
@@ -53,10 +60,6 @@ function TodoList({title}) {
 
     };
 
-
-
-
-
     // Displaying the updated tasks
     // short way
     const task_items_displayed = [];
@@ -73,9 +76,14 @@ function TodoList({title}) {
         }
         task_items_displayed.push(
             <>
-                <input onClick={toggleTaskCompletion} type="checkbox" id={index} ></input>
-                <label id={`${index}_task`}>{task_text}</label>
+            <li className="list-group-item">
+                
+                <input  onClick={toggleTaskCompletion} type="checkbox" id={index} ></input>
+                <span> </span>
+                <label className="card-text" id={`${index}_task`}>{task_text}</label>
+                {curr_task.done == true? <a href="#" className="badge badge-success">Completed</a> : null}
                 <br></br>
+            </li>
             </>
         );
         index += 1;
@@ -85,7 +93,7 @@ function TodoList({title}) {
     for (const curr_task of all_tasks) {
         if (curr_task.done) {
             // Striking the done task using id 
-            done_task_items_displayed.push(<li id={`${index}_task`}>{curr_task.task}</li>);
+            done_task_items_displayed.push(<><li className="list-group-item" id={`${index}_task`}>{curr_task.task}</li></>);
             index += 1;
         }
     }
@@ -94,24 +102,43 @@ function TodoList({title}) {
     return (
         <>
             <h2>{title} Task List:</h2>
-            <div className="row">
-                <div className="col">
-                    <ul>
-                        {/* Long way */}
-                        {task_items_displayed}
-                    </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="col-6">
+                        <div className="card">
 
-                    <Form_event_handling onTaskAdded={onTaskAddedCallBack} />
-                    
-                </div>
-                <div className="col">
-                    <label>Done Tasks:</label>
-                    <ul>
-                        {done_task_items_displayed}
-                    </ul>
+                        <div className="card-body">
+                        <h4 className="card-title">Tasks:</h4>
+                        <div className="card-text">
+                        <ul className="list-group">
+                            {/* Long way */}
+                            {task_items_displayed}
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
 
+                        <Form_event_handling onTaskAdded={onTaskAddedCallBack} />
+
+                    </div>
+                    <div className="col-6">
+                        <div className="card">
+                            <div className="card-body">
+                            <h4>Done Tasks:</h4>
+                            <div className="card-text">
+                            <ul className="list-group">
+                            {done_task_items_displayed}
+                            </ul>
+                            </div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
                 </div>
             </div>
+
+            
         </>
     );
 };
